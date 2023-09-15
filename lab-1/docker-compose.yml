@@ -1,0 +1,42 @@
+version: '3'
+services:
+  cassandra-node1:
+    image: cassandra:latest
+    container_name: cassandra-node1
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_SEEDS=cassandra-node1
+      - CASSANDRA_CLUSTER_NAME=my-cassandra-cluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+
+  cassandra-node2:
+    image: cassandra:latest
+    container_name: cassandra-node2
+    environment:
+      - CASSANDRA_SEEDS=cassandra-node1
+      - CASSANDRA_CLUSTER_NAME=my-cassandra-cluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack2
+
+  cassandra-node3:
+    image: cassandra:latest
+    container_name: cassandra-node3
+    environment:
+      - CASSANDRA_SEEDS=cassandra-node1
+      - CASSANDRA_CLUSTER_NAME=my-cassandra-cluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack3
+
+  python-script:
+    build:
+      context: ./
+      dockerfile: dockerfile.python
+    depends_on:
+      - cassandra-node1
+      - cassandra-node2
+      - cassandra-node3
+    environment:
+      - CASSANDRA_HOST=cassandra-node1
+      - CASSANDRA_PORT=9042

@@ -1,0 +1,11 @@
+FROM python:3.11.5
+
+COPY postulaciones.xlsx ./
+
+RUN pip install pandas
+
+WORKDIR /app/
+
+COPY file-converter.py .
+
+CMD ["python", "file-converter.py"]
