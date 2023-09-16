@@ -1,11 +1,10 @@
 FROM python:3.11.5
 
-COPY postulaciones.xlsx ./
+COPY file-converter.py /app/file-converter.py
+COPY postulaciones.xlsx /app/postulaciones.xlsx
 
-RUN pip install pandas
+RUN pip install pandas cassandra-driver
 
-WORKDIR /app/
-
-COPY file-converter.py .
+WORKDIR /app
 
 CMD ["python", "file-converter.py"]

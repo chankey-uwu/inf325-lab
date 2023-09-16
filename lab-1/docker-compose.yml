@@ -31,12 +31,11 @@ services:
 
   python-script:
     build:
-      context: ./
+      context: .
       dockerfile: dockerfile.python
+    volumes:
+      - ./postulaciones.xlsx:/app/postulaciones.xlsx
     depends_on:
       - cassandra-node1
       - cassandra-node2
       - cassandra-node3
-    environment:
-      - CASSANDRA_HOST=cassandra-node1
-      - CASSANDRA_PORT=9042
