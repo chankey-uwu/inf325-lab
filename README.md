@@ -103,7 +103,7 @@ Esta tabla se crea para responder al punto 3.b del laboratorio, que consiste en 
 
 Para crear la tabla, se usa el comando:
 ```cql
-CCREATE TABLE IF NOT EXISTS inf_maule_postulantes (
+CREATE TABLE IF NOT EXISTS inf_maule_postulantes (
     cedula TEXT,
     periodo INT,
     sexo TEXT,
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS matriculados_ciencias_psu (
     psu_promlm DOUBLE,
     pace TEXT,
     gratuidad TEXT,
-    PRIMARY KEY (facultad, puntaje, cedula)
+    PRIMARY KEY (facultad, puntaje, cedula, preferencia, periodo)
 );
 ```
 
