@@ -1,10 +1,11 @@
 version: '3'
 services:
   cassandra-node1:
-    image: cassandra:latest
     container_name: cassandra-node1
+    build:
+      dockerfile: dockerfile.node1
     ports:
-      - "9042:9042"
+      - 9042:9042
     environment:
       - CASSANDRA_SEEDS=cassandra-node1
       - CASSANDRA_CLUSTER_NAME=my-cassandra-cluster
@@ -12,6 +13,8 @@ services:
       - CASSANDRA_RACK=rack1
 
   cassandra-node2:
+    depends_on:
+      - cassandra-node1
     image: cassandra:latest
     container_name: cassandra-node2
     environment:
@@ -21,6 +24,8 @@ services:
       - CASSANDRA_RACK=rack2
 
   cassandra-node3:
+    depends_on:
+      - cassandra-node1
     image: cassandra:latest
     container_name: cassandra-node3
     environment:

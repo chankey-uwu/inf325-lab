@@ -1,0 +1,4 @@
+FROM cassandra:latest
+
+COPY postulaciones.csv data.csv
+COPY init.cql ./
