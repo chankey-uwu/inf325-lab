@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS medicina_postulantes (
     psu_promlm DOUBLE,
     pace TEXT,
     gratuidad TEXT,
-    PRIMARY KEY (carrera, periodo, cedula)
+    PRIMARY KEY ((carrera, matriculado), periodo, cedula)
 );
 
 CREATE TABLE IF NOT EXISTS inf_maule_postulantes (
@@ -39,8 +39,7 @@ CREATE TABLE IF NOT EXISTS inf_maule_postulantes (
     psu_promlm DOUBLE,
     pace TEXT,
     gratuidad TEXT,
-    PRIMARY KEY ((carrera, region), periodo, cedula)
-);
+    PRIMARY KEY ((carrera, region, matriculado), periodo, cedula));
 
 CREATE TABLE IF NOT EXISTS matriculados_ciencias_psu (
     cedula TEXT,
@@ -59,7 +58,7 @@ CREATE TABLE IF NOT EXISTS matriculados_ciencias_psu (
     psu_promlm DOUBLE,
     pace TEXT,
     gratuidad TEXT,
-    PRIMARY KEY (facultad, puntaje, cedula, preferencia, periodo)
+    PRIMARY KEY ((facultad, matriculado), puntaje, cedula, preferencia, periodo)
 );
 
 COPY medicina_postulantes (CEDULA, PERIODO, SEXO, PREFERENCIA, CARRERA, MATRICULADO, FACULTAD, PUNTAJE, GRUPO_DEPEN, REGION, LATITUD, LONGITUD, PTJE_NEM, PSU_PROMLM, PACE, GRATUIDAD) FROM 'data.csv' WITH DELIMITER=',' AND HEADER = true;

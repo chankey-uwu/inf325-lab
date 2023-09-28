@@ -49,7 +49,7 @@ Esta consulta se realiza para responder al punto 3.a del laboratorio, que consis
 
 Para consultar los datos del item 3.a, se usa el comando:
 ```cql
-SELECT * FROM medicina_postulantes WHERE carrera='MEDICINA';
+SELECT * FROM medicina_postulantes WHERE carrera='MEDICINA' AND matriculado='SI';
 ```
 
 ### Tabla 2
@@ -60,7 +60,7 @@ Esta consulta se realiza para responder al punto 3.b del laboratorio, que consis
 
 Para consultar los datos del item 3.b, se usa el comando:
 ```cql
-SELECT * FROM inf_maule_postulantes WHERE region='MAULE' AND carrera='INGENIERÍA CIVIL INFORMÁTICA';
+SELECT * FROM inf_maule_postulantes WHERE carrera='INGENIERÍA CIVIL INFORMÁTICA' AND region='MAULE' AND matriculado='SI';
 ```
 
 ### Tabla 3
@@ -71,5 +71,5 @@ Esta consulta se realiza para responder al punto 3.c del laboratorio, que consis
 
 Para consultar los datos del item 3.c, se usa el comando:
 ```cql
-SELECT * FROM matriculados_ciencias_psu WHERE facultad='CIENCIAS DE LA SALUD';
+SELECT * FROM matriculados_ciencias_psu WHERE facultad='CIENCIAS DE LA SALUD' AND matriculado='SI';
 ```

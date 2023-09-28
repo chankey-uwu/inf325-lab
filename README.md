@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS medicina_postulantes (
     psu_promlm DOUBLE,
     pace TEXT,
     gratuidad TEXT,
-    PRIMARY KEY (carrera, periodo, cedula)
+    PRIMARY KEY ((carrera, matriculado), periodo, cedula)
 );
 ```
 
@@ -92,7 +92,7 @@ COPY medicina_postulantes (CEDULA, PERIODO, SEXO, PREFERENCIA, CARRERA, MATRICUL
 
 Para consultar los datos del item 3.a, se usa el comando:
 ```cql
-SELECT * FROM medicina_postulantes WHERE carrera='MEDICINA';
+SELECT * FROM medicina_postulantes WHERE carrera='MEDICINA' AND matriculado='SI';
 ```
 
 ### Tabla 2
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS inf_maule_postulantes (
     psu_promlm DOUBLE,
     pace TEXT,
     gratuidad TEXT,
-    PRIMARY KEY ((carrera, region), periodo, cedula));
+    PRIMARY KEY ((carrera, region, matriculado), periodo, cedula));
 ```
 
 Este comando generará la tabla *inf_maule_postulantes*, cuya **partition key** es compuesta por el campo *carrera* y *region*, mientras que sus **clustering keys** son *periodo y cedula*.
@@ -136,7 +136,7 @@ COPY inf_maule_postulantes (CEDULA, PERIODO, SEXO, PREFERENCIA, CARRERA, MATRICU
 
 Para consultar los datos del item 3.b, se usa el comando:
 ```cql
-SELECT * FROM inf_maule_postulantes WHERE region='MAULE' AND carrera='INGENIERÍA CIVIL INFORMÁTICA';
+SELECT * FROM inf_maule_postulantes WHERE carrera='INGENIERÍA CIVIL INFORMÁTICA' AND region='MAULE' AND matriculado='SI';
 ```
 
 ### Tabla 3
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS matriculados_ciencias_psu (
     psu_promlm DOUBLE,
     pace TEXT,
     gratuidad TEXT,
-    PRIMARY KEY (facultad, puntaje, cedula, preferencia, periodo)
+    PRIMARY KEY ((facultad, matriculado), puntaje, cedula, preferencia, periodo)
 );
 ```
 
@@ -181,5 +181,5 @@ COPY matriculados_ciencias_psu (CEDULA, PERIODO, SEXO, PREFERENCIA, CARRERA, MAT
 
 Para consultar los datos del item 3.c, se usa el comando:
 ```cql
-SELECT * FROM matriculados_ciencias_psu WHERE facultad='CIENCIAS DE LA SALUD';
+SELECT * FROM matriculados_ciencias_psu WHERE facultad='CIENCIAS DE LA SALUD' AND matriculado='SI';
 ```
