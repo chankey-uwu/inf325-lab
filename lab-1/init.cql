@@ -1,5 +1,5 @@
 CREATE KEYSPACE IF NOT EXISTS lab1 WITH replication={'class':'SimpleStrategy','replication_factor':3};
-
+CONSISTENCY Three;
 USE lab1;
 
 CREATE TABLE IF NOT EXISTS medicina_postulantes (
